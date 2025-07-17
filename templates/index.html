@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            margin: 0 auto;
+            padding: 2rem;
+            max-width: 800px;
+            background: #f4f6f8;
+            color: #1a1a1a;
+        }
+
+        .title {
+            padding: 3rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .title h1 {
+            font-size: 2.5rem;
+        }
+
+        .title h2 {
+            font-weight: 400;
+            font-size: 1.25rem;
+            color: #555;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        form input {
+            font-size: 1.1rem;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            max-width: 500px;
+            background: #ffffff;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: 0.3s ease;
+        }
+
+        form input:focus {
+            outline: none;
+            border-color: #294079;
+            box-shadow: 0 0 8px rgba(41, 64, 121, 0.2);
+        }
+
+        form button {
+            font-size: 1rem;
+            background: #294079;
+            border: none;
+            color: white;
+            padding: 0.8rem 2rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        form button:hover {
+            background: #3c5ab7;
+        }
+
+        .generated {
+            margin-top: 3rem;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .generated img {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 1rem;
+        }
+
+        .generated p {
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            form {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            form button {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            form input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <h1>Generate QR Code</h1>
+        <h2>Insert a link below to generate your QR Code</h2>
+    </div>
+
+    <form action="/" method="POST">
+        <input type="text" name="link" placeholder="Enter your link here" required>
+        <button type="submit">Generate</button>
+    </form>
+
+    {% if data %}
+    <div class="generated">
+        <img src="{{ data }}" alt="QR Code" />
+        <p>Here is the QR Code we generated for you!</p>
+    </div>
+    {% endif %}
+</body>
+</html>
